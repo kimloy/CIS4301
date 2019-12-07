@@ -23,7 +23,7 @@ var test = "";
         var LatinMenu = "";
          for(var i = 0; i<data.length; i++)
          {
-            LatinMenu += "<a class=\"dropdown-item\" href=\"#\">" + data[i].GENUS + " " + data[i].SPECIES + "</a>\n";
+            LatinMenu += "<a class=\"dropdown-item\" href=\"#\">" + data[i].COMNAME + "</a>\n";
              // $("#LatinDropDownMenu").each(function(){
              //     $(this).wrapInner(LatinMenu);
              // })

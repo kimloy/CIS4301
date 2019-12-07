@@ -26,7 +26,7 @@ app.get('/', function (request, response) {
 
 app.get('/latin', function(request, response){
    console.log('GET request received at /latin');
-   db.all('SELECT genus, species FROM FLOWERS', function (err, rows) {
+   db.all('SELECT COMNAME FROM FLOWERS', function (err, rows) {
         if(err)
             console.log("Error: " + err);
         else
@@ -37,7 +37,20 @@ app.get('/latin', function(request, response){
 app.post('/postDrop', function(req, res){
     console.log('post came in');
     console.log(req.body);
+    var currentFlower = req.body;
+    var currentFlower = currentFlower.dd;
+    console.log(currentFlower);
+    sql = "SELECT * from SIGHTINGS \n" +
+        "where SIGHTINGS.name = ? \n" +
+        "ORDER BY SIGHTINGS.sighted desc;"
 
-    res.status(201)
-    res.send(req.body).end();
+    db.all(sql, [currentFlower], function(err, rows){
+        if(err)
+            console.log("Error: " + err );
+        else
+        {
+            res.status(201)
+            res.send(rows).end();
+        }
+    })
 });
