@@ -98,3 +98,39 @@ $(document).ready(function(){
         }
     }
 
+    function sendEdit()
+    {
+        var editName = $("#editFlowerName").val().trim();
+        var editPerson = $("#editPerson").val().trim();
+        var editLocation = $("#editLocation").val().trim();
+        var editSighted = $("#editSighted").val().trim();
+
+        var data = {};
+        data.NAME = editName;
+        data.PERSON = editPerson;
+        data.LOCATION = editLocation;
+        data.SIGHTED = editSighted;
+        data = JSON.stringify(data);
+
+        $.ajax({
+            url: "/editData",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            complete: function() {
+                //called when complete
+                console.log('process complete');
+            },
+            success: function(data) {
+                console.log('success');
+                console.log(JSON.stringify(data));
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+    }
+

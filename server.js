@@ -54,3 +54,10 @@ app.post('/postDrop', function(req, res){
         }
     })
 });
+
+app.post('/editData', function(req,res){
+   console.log("edit post came in");
+   console.log(req.body);
+   res.status(201);
+   res.send(req.body).end();
+});
