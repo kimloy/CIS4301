@@ -2,13 +2,25 @@ getLatin();
 
 var LatinDrop = " ";
 var test = "";
-var tableStatus = false;
+var editName = "";
+var editPerson  = "";
+var editLocation = "";
+var editSighted = "";
 
 $(document).ready(function(){
     $("#myTable").on('click', '#editBut', function(){
         var $row = $(this).closest("tr");
-        var $text = $row.find(".name").text();
-        alert($text);
+        editName = $row.find(".name").text();
+        editPerson = $row.find(".person").text();
+        editLocation = $row.find(".location").text();
+        editSighted = $row.find(".sighted").text();
+    });
+
+    $('#editModal').on('show.bs.modal', function(e){
+       $("#editFlowerName").val(editName);
+       $("#editPerson").val(editPerson);
+       $("#editLocation").val(editLocation);
+       $("#editSighted").val(editSighted);
     });
 });
 
@@ -20,8 +32,6 @@ $(document).ready(function(){
                 console.log("No data received");
             }
             console.log("Received data");
-            // for(var i = 0; i < sqlData.length; i++)
-            //     showLatin(sqlData[i].GENUS + " " + sqlData[i].SPECIES);
             showLatin(sqlData)
         });
     }
@@ -33,9 +43,6 @@ $(document).ready(function(){
          for(var i = 0; i<data.length; i++)
          {
             LatinMenu += "<a class=\"dropdown-item\" href=\"#\">" + data[i].COMNAME + "</a>\n";
-             // $("#LatinDropDownMenu").each(function(){
-             //     $(this).wrapInner(LatinMenu);
-             // })
         }
         $("#LatinDropDownMenu").append(LatinMenu);
         $('.dropdown-menu a').click(function(){
@@ -74,7 +81,7 @@ $(document).ready(function(){
     function makeTable(data)
     {
         document.getElementById("myTable").innerHTML = "";
-        var editButton = '<button type="button" class="btn btn-outline-info" id = "editBut" >Edit</button>'
+        var editButton = '<button type="button" class="btn btn-outline-info" id = "editBut" data-toggle="modal" data-target="#editModal">Edit</button>'
         var deleteButton = '<button type="button" class="btn btn-outline-danger">Delete</button>'
         var table = document.getElementById('myTable');
         for(var i = 0; i<data.length; i++)

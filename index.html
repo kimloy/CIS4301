@@ -115,6 +115,51 @@
 </div>
 <!---------------------------------------------------------------- Table Ends -------------------------------------------------------------------->
 
+<!---------------------------------------------------------------- Edit Modal Starts -------------------------------------------------------------------->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditModalTitle">Editing Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editFlowerName">Flower's Name</label>
+                            <input type="text" class="form-control" id="editFlowerName" placeholder="Flower's Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editPerson">Person</label>
+                            <input type="text" class="form-control" id="editPerson" placeholder="Person">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editLocation">Location</label>
+                            <input type="text" class="form-control" id="editLocation" placeholder="Location">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editSighted">Sighted</label>
+                            <input type="text" class="form-control" id="editSighted" placeholder="Sighted">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------------------------- Edit Modal Ends -------------------------------------------------------------------->
+
+
+
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
