@@ -2,6 +2,15 @@ getLatin();
 
 var LatinDrop = " ";
 var test = "";
+var tableStatus = false;
+
+$(document).ready(function(){
+    $("#myTable").on('click', '#editBut', function(){
+        var $row = $(this).closest("tr");
+        var $text = $row.find(".name").text();
+        alert($text);
+    });
+});
 
     function getLatin()
     {
@@ -54,6 +63,7 @@ var test = "";
             success: function(data) {
                 console.log('success');
                 console.log(JSON.stringify(data));
+                makeTable(data);
             },
             error: function(error) {
                 console.log(error);
@@ -61,4 +71,23 @@ var test = "";
         });
     }
 
+    function makeTable(data)
+    {
+        document.getElementById("myTable").innerHTML = "";
+        var editButton = '<button type="button" class="btn btn-outline-info" id = "editBut" >Edit</button>'
+        var deleteButton = '<button type="button" class="btn btn-outline-danger">Delete</button>'
+        var table = document.getElementById('myTable');
+        for(var i = 0; i<data.length; i++)
+        {
+            var row = `<tr> 
+                                    <td class = "name">${data[i].NAME}</td>
+                                    <td class = "person"> ${data[i].PERSON}</td>
+                                    <td class = "location">${data[i].LOCATION}</td>
+                                    <td class = "sighted">${data[i].SIGHTED}</td>
+                                    <td>${editButton}</td>
+                                    <td>${deleteButton}</td>
+                                </tr>`
+            table.innerHTML += row;
+        }
+    }
 
