@@ -8,8 +8,8 @@
 
 </head>
 <body>
-<!--------------------------------------------------------------Top-Nav Begins ---------------------------------------------------------------->
 
+<!--------------------------------------------------------------Top-Nav Begins ---------------------------------------------------------------->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
         <img src="UF_logo.png" width="50" height="50" class="d-inline-block align-top" alt="">
@@ -87,9 +87,7 @@
         <div>
             <input class="btn btn-primary" type="submit" value="Submit" onclick="getDropSelected()">
         </div>
-        <div class="col-2">
-            <input type="text" class="form-control" placeholder="Flowers Common Name">
-        </div>
+        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal">Insert</button>
     </div>
 </form>
 <!-------------------------------------------------------------- Search Ends  ----------------------------------------------------------------->
@@ -152,8 +150,48 @@
 </div>
 <!---------------------------------------------------------------- Edit Modal Ends -------------------------------------------------------------------->
 
-
-
+<!---------------------------------------------------------------- Insert Modal Starts ---------------------------------------------------------------->
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertModalTitle">Inserting A New Sighting</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="insertName">Name</label>
+                            <input type="text" class="form-control" id="insertName" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="insertPerson">Person</label>
+                            <input type="text" class="form-control" id="insertPerson" placeholder="Person">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="insertLocation">Location</label>
+                            <input type="text" class="form-control" id="insertLocation" placeholder="Location">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="insertSighted">Sighted</label>
+                            <input type="text" class="form-control" id="insertSighted" placeholder="Sighted">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="newSighting()">Save New </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------------------------------------- Insert Modal Ends ------------------------------------------------------------------>
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

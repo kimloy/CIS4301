@@ -170,6 +170,40 @@ $(document).ready(function(){
                 console.log(error);
             }
         });
+    }
 
+    function newSighting()
+    {
+        var newName = $("#insertName").val().trim();
+        var newPerson = $("#insertPerson").val().trim();
+        var newLocation = $("#insertLocation").val().trim();
+        var newSighted = $("#insertSighted").val().trim();
+
+        var data = {};
+        data.NAME = newName;
+        data.PERSON = newPerson;
+        data.LOCATION = newLocation;
+        data.SIGHTED = newSighted;
+        data = JSON.stringify(data);
+
+        $.ajax({
+            url: "/insertData",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            complete: function() {
+                //called when complete
+                console.log('process complete');
+            },
+            success: function(data) {
+                console.log('success');
+                console.log(JSON.stringify(data));
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     }
 

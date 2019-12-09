@@ -42,7 +42,7 @@ app.post('/postDrop', function(req, res){
     console.log(currentFlower);
     sql = "SELECT * from SIGHTINGS \n" +
         "where SIGHTINGS.name = ? \n" +
-        "ORDER BY SIGHTINGS.sighted desc;"
+        "ORDER BY SIGHTINGS.sighted desc LIMIT 10;"
 
     db.all(sql, [currentFlower], function(err, rows){
         if(err)
@@ -61,7 +61,7 @@ app.post('/getFlower', function(req, res){
     var comName = comName.COMNAME;
     console.log(comName)
     var sql = "Select * From Flowers\n" +
-        "where comname = ?;"
+               "where comname = ?;"
 
     db.all(sql, [comName], function(err, rows){
         if(err)
@@ -75,10 +75,49 @@ app.post('/getFlower', function(req, res){
     })
 });
 
-app.post('/editData', function(req,res){
+app.post('/editData', function(req,res)
+{
    console.log("edit post came in");
    console.log(req.body);
    var userEdit = req.body;
-   res.status(201);
-   res.send("edit came in! " + req.body).end();
+   db.run(
+       'UPDATE Flowers SET genus = $Genus, species = $Species WHERE comname = $Comname;',
+       {
+           $Comname: userEdit.COMNAME,
+           $Species: userEdit.SPECIES,
+           $Genus: userEdit.GENUS
+       },
+       // callback function to run when the query finishes:
+       (err) => {
+           if (err) {
+               res.send({message: 'error in app.post(/updateF)'});
+           } else {
+               res.send({message: 'Successfully updated flowers if Comname exists.'});
+           }
+       }
+   );
+})
+
+app.post('/insertData', function(req, res){
+    console.log(req.body);
+    var newName = req.body.NAME;
+    var newPerson = req.body.PERSON;
+    var newLocation = req.body.LOCATION;
+    var newSighted = req.body.SIGHTED;
+
+    db.run('INSERT INTO SIGHTINGS VALUES($NAME, $PERSON, $LOCATION, $SIGHTED);',
+        {
+            $NAME: newName,
+            $PERSON: newPerson,
+            $LOCATION: newLocation,
+            $SIGHTED: newSighted
+        },
+        (err) =>
+        {
+            if (err)
+                res.send(err);
+            else
+                res.send("insert was a success");
+        }
+    );
 });
