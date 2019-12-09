@@ -2,26 +2,26 @@ getLatin();
 
 var LatinDrop = " ";
 var test = "";
-var editName = "";
-var editPerson  = "";
-var editLocation = "";
-var editSighted = "";
+var editGenus = "";
+var editSpecies  = "";
+var editComname = "";
 
 $(document).ready(function(){
     $("#myTable").on('click', '#editBut', function(){
         var $row = $(this).closest("tr");
-        editName = $row.find(".name").text();
-        editPerson = $row.find(".person").text();
-        editLocation = $row.find(".location").text();
-        editSighted = $row.find(".sighted").text();
+        editComname = $row.find(".name").text();
+
+        var x = getEdit(editComname);
+        editSpecies = x[0].SPECIES;
+        editGenus = x[0].GENUS;
     });
 
     $('#editModal').on('show.bs.modal', function(e){
-       $("#editFlowerName").val(editName);
-       $("#editPerson").val(editPerson);
-       $("#editLocation").val(editLocation);
-       $("#editSighted").val(editSighted);
+        $("#editGenus").val(editGenus);
+        $("#editSpecies").val(editSpecies);
+        $("#editComname").val(editComname);
     });
+
 });
 
     function getLatin()
@@ -98,18 +98,57 @@ $(document).ready(function(){
         }
     }
 
+    function getEdit(ComName)
+    {
+        var data = {};
+        data.COMNAME = ComName;
+        data = JSON.stringify(data);
+        var returnData = "";
+        $.ajax({
+            url: "/getFlower",
+            type: "POST",
+            data: data,
+            async: false,
+            dataType: "json",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            complete: function() {
+                //called when complete
+                console.log('process complete');
+            },
+            success: function(data) {
+                console.log('success');
+                console.log(data);
+                returnData = data;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        return returnData;
+    }
+
+    function editModal()
+    {
+        $('#editModal').on('show.bs.modal', function(e){
+            $("#editGenus").val(editGenus);
+            $("#editSpecies").val(editSpecies);
+            $("#editComname").val(editComname);
+        });
+    }
+
+
+
     function sendEdit()
     {
-        var editName = $("#editFlowerName").val().trim();
-        var editPerson = $("#editPerson").val().trim();
-        var editLocation = $("#editLocation").val().trim();
-        var editSighted = $("#editSighted").val().trim();
+        var editGenus = $("#editGenus").val().trim();
+        var editSpecies = $("#editSpecies").val().trim();
+        var editComname = $("#editComname").val().trim();
 
         var data = {};
-        data.NAME = editName;
-        data.PERSON = editPerson;
-        data.LOCATION = editLocation;
-        data.SIGHTED = editSighted;
+        data.GENUS = editGenus;
+        data.SPECIES = editSpecies;
+        data.COMNAME = editComname;
         data = JSON.stringify(data);
 
         $.ajax({

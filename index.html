@@ -104,7 +104,7 @@
             <th scope="col">Person</th>
             <th scope="col">Location</th>
             <th scope="col">Sighted</th>
-            <th scope="col">Edit</th>
+            <th scope="col">Edit Flower</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
@@ -120,7 +120,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="EditModalTitle">Editing Data</h5>
+                <h5 class="modal-title" id="EditModalTitle">Editing Flower Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,23 +129,17 @@
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="editFlowerName">Flower's Name</label>
-                            <input type="text" class="form-control" id="editFlowerName" placeholder="Flower's Name">
+                            <label for="editGenus">Genus</label>
+                            <input type="text" class="form-control" id="editGenus" placeholder="Genus Name">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="editPerson">Person</label>
-                            <input type="text" class="form-control" id="editPerson" placeholder="Person">
+                            <label for="editSpecies">Species</label>
+                            <input type="text" class="form-control" id="editSpecies" placeholder="Species">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="editLocation">Location</label>
-                            <input type="text" class="form-control" id="editLocation" placeholder="Location">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="editSighted">Sighted</label>
-                            <input type="text" class="form-control" id="editSighted" placeholder="Sighted">
-                        </div>
+                    <div class="form-group">
+                        <label for="editComname">Comname</label>
+                        <input type="text" class="form-control" id="editComname" placeholder="Comname">
                     </div>
                 </form>
             </div>

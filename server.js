@@ -55,9 +55,30 @@ app.post('/postDrop', function(req, res){
     })
 });
 
+app.post('/getFlower', function(req, res){
+    console.log(req.body);
+    var comName = req.body;
+    var comName = comName.COMNAME;
+    console.log(comName)
+    var sql = "Select * From Flowers\n" +
+        "where comname = ?;"
+
+    db.all(sql, [comName], function(err, rows){
+        if(err)
+            console.log("Error: " + err);
+        else
+        {
+            console.log(rows);
+            res.status(201);
+            res.send(rows).end();
+        }
+    })
+});
+
 app.post('/editData', function(req,res){
    console.log("edit post came in");
    console.log(req.body);
+   var userEdit = req.body;
    res.status(201);
-   res.send(req.body).end();
+   res.send("edit came in! " + req.body).end();
 });
